@@ -34,3 +34,17 @@
 			* _Update old urls: Find Content-> Check all -> Update Options(Update URL alias)_	
 
 * Blocks
+	* rearange navbar, search and footer blocks
+	* Create a Basic Block (Text)
+
+* Menus
+	* Rearange menu items
+	* Create a menu (as footer nav, from Blocks)
+
+* Custom Homepage
+	* Create a Basic page
+	* Configuration -> Site information -> Default front page (home)
+
+* Update Module
+	* Modules -> Update (don't update in production, backup!)
+	* /update.php to update the DB
