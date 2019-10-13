@@ -98,7 +98,7 @@ _Can set various filters, relationships_
 
 _Display content based on page_
 
-### Create a block View 
+### Create a Block View 
 * Install ctools(required) and views
 * Structure -> Views -> Add new view
 	* Add View name (Test View)
@@ -125,4 +125,71 @@ _Display content based on page_
 		* Full, mini and Num of items
 		* Use AJAX (link doesn't change). Advanced -> Use AJAX: Yes
 
+
+* Contextual Filters with Views
+	_The designer must appear in the left column of a project_
+	* Add Designer field in Project Content Type
+	* Create a Block View: Side Info View
+		* pager 1 item only
+		* Sort Criteria (Post date (desc))
+		* show only last piece of content (Sass mastery)
+	* From Blocks -> show Side Info View in Sidebar first
+	* Configure block to appear only in projects/* pages
+	* Now Sass mastery appears in sidebar of every Project 
+		* Not what we want!
+		* Should say the name of the developer
+
+	* Pass Contextual filter (show it knows what content is on a display proper Designer field)
+		* Project Side Info: Block View -> Advanced -> Add Contextual Filter
+		* Provide Default value
+			* Contet ID from URL
+
+
+
+
 ### Create a Page View 
+_It creates a page_
+
+* Title: New page
+* Add Fields and Filters
+* Browse the page at /new-page
+
+
+
+
+## Create Custom Date Types
+* Configuration » Regional and language » Date and time
+* Formats Tab
+	* Add format 
+	* Add Format string -> M d Y (php date time docs)
+* Types Tab
+	* Add date type
+	* Name it and choose the newly created Date format
+* In the View
+	* you can choose the New Type format for Date format
+
+
+## Update Drupal Core
+* 7.12 -> 7.14
+* BackUp all files
+* Home » Administration » Configuration » Development » Maintenance mode
+	* Check Put site into maintenance mode
+* Download latest version
+* Delete everything from root folder except /sites!!
+* Paste everything from latest version except /sites
+* Browse to /update.php
+* Update DB
+* Configuration -> Clear Cache
+* Uncheck maintance mode
+* Delete files
+	(CHANGELOG.txt, INSTALL.mysql.txt, INSTALL.pgsql.txt, install.php, INSTALL.sqlite.txt, INSTALL.txt, LICENCE.txt, MAINTAINERS.txt, UPGRADE.txt)
+
+
+
+## Google Analytics
+* install [module](https://www.drupal.org/project/google_analytics)
+* configure web property id
+
+
+
+
