@@ -126,33 +126,60 @@ _Display content based on page_
 		* Use AJAX (link doesn't change). Advanced -> Use AJAX: Yes
 
 
-* Contextual Filters with Views
-	_The designer must appear in the left column of a project_
-	* Add Designer field in Project Content Type
-	* Create a Block View: Side Info View
-		* pager 1 item only
-		* Sort Criteria (Post date (desc))
-		* show only last piece of content (Sass mastery)
-	* From Blocks -> show Side Info View in Sidebar first
-	* Configure block to appear only in projects/* pages
-	* Now Sass mastery appears in sidebar of every Project 
-		* Not what we want!
-		* Should say the name of the developer
-
-	* Pass Contextual filter (show it knows what content is on a display proper Designer field)
-		* Project Side Info: Block View -> Advanced -> Add Contextual Filter
-		* Provide Default value
-			* Contet ID from URL
-
-
-
-
 ### Create a Page View 
 _It creates a page_
 
 * Title: New page
 * Add Fields and Filters
 * Browse the page at /new-page
+
+
+## Contextual Filters with Views
+_The designer must appear in the left column of a project_
+
+* Add Designer field in Project Content Type
+* Create a Block View: Side Info View
+	* pager 1 item only
+	* Sort Criteria (Post date (desc))
+	* show only last piece of content (Sass mastery)
+* From Blocks -> show Side Info View in Sidebar first
+* Configure block to appear only in projects/* pages
+* Now Sass mastery appears in sidebar of every Project 
+	* Not what we want!
+	* Should say the name of the developer
+* Pass Contextual filter (show it knows what content is on a display proper Designer field)
+	* Project Side Info: Block View -> Advanced -> Add Contextual Filter
+	* Provide Default value
+		* Contet ID from URL
+
+
+## Taxonomy
+_Core module_ // _Sort and categorize content_ // _metadata, tags_
+
+* Structure -> Taxonomy
+* Create Taxonomy (Vocabulary) for projects (tutorial, development, design)
+* Add  -> Project Type -> Add description
+* Add Terms (now page available: /project-type/development)
+* In Project Content Type -> Add new field -> Widghet (Check boxes)
+	* Name: Project Type
+	* Field: Term reference
+	* Vocabulary: Project Type created
+
+
+* Add children to Taxonomy terms
+	* list terms
+	* Add term
+	* Relations -> Parent terms (-Drupal)
+
+## Exposed Filters
+
+_Expose filters to users_
+
+* Edit Block View
+* Filter Criteria
+	* Add filter 
+	* Content: Project Type 
+	* Use AJAX
 
 
 
@@ -189,6 +216,14 @@ _It creates a page_
 ## Google Analytics
 * install [module](https://www.drupal.org/project/google_analytics)
 * configure web property id
+
+## reCAPTCHA
+
+## Quick Tabs
+* instal module
+* Structure -> Quicktabs
+* Add Tabs (Can use AJAX)
+* Shows up in Blocks -> choose where to show
 
 
 
