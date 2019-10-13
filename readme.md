@@ -48,3 +48,45 @@
 * Update Module
 	* Modules -> Update (don't update in production, backup!)
 	* /update.php to update the DB
+
+----------------------------------
+* Custom Image Styles
+	* Configuration -> Media -> Image Styles
+	* Add new effect: Scale (height: 500) and Crop 500x500
+
+
+* Install Wysiwyg Text Editor
+	* Download [module](https://www.drupal.org/project/wysiwyg)
+	* copy in /sites/all/modules
+	* Admin Bar -> Modules -> Check Wysiwyg -> Save -> Configure -> Download CKEditor and follow instructions where to copy
+	* Refresh configuration page, Select Text Format: Filtered HTML, Editor: CKEditor
+	* Add Buttons
+
+#### Contact forms
+
+* Contact Form (Core Module), simple not configurable
+	* Modules -> Check Contact and Save
+	* Configure -> Add another Category (Contact)
+	* Modify Menus to include Contact (Check Enable)
+
+* Webform
+	* Install module
+	* Configure (Create custom fields)
+
+
+* Insert an Image in Wysiwyg
+	* Install Insert module
+	* Structrure -> Content Types -> Article -> Manage Fields -> Add a new Field (insert_image)
+	* Select Insert -> Enable insert Button
+
+---------------------
+
+#### Views
+##### A way to control displaying your content
+##### Can set various filters, relationships
+##### Display content based on page
+
+Create a block View 
+	* Install ctools(required) and views
+	* Structure -> Views -> Create a block
+	* View appears under Structure -> Blocks (View: Test View: Test)
