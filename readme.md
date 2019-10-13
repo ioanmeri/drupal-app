@@ -55,14 +55,7 @@
 	* Add new effect: Scale (height: 500) and Crop 500x500
 
 
-* Install Wysiwyg Text Editor
-	* Download [module](https://www.drupal.org/project/wysiwyg)
-	* copy in /sites/all/modules
-	* Admin Bar -> Modules -> Check Wysiwyg -> Save -> Configure -> Download CKEditor and follow instructions where to copy
-	* Refresh configuration page, Select Text Format: Filtered HTML, Editor: CKEditor
-	* Add Buttons
-
-#### Contact forms
+## Contact forms
 
 * Contact Form (Core Module), simple not configurable
 	* Modules -> Check Contact and Save
@@ -73,20 +66,63 @@
 	* Install module
 	* Configure (Create custom fields)
 
+## Wysiwg
 
-* Insert an Image in Wysiwyg
+* Install Wysiwyg Text Editor
+	* Download [module](https://www.drupal.org/project/wysiwyg)
+	* copy in /sites/all/modules
+	* Admin Bar -> Modules -> Check Wysiwyg -> Save -> Configure -> Download CKEditor and follow instructions where to copy
+	* Refresh configuration page, Select Text Format: Filtered HTML, Editor: CKEditor
+	* Add Buttons
+
+* Insert an Image in Wysiwyg with Insert
 	* Install Insert module
 	* Structrure -> Content Types -> Article -> Manage Fields -> Add a new Field (insert_image)
 	* Select Insert -> Enable insert Button
 
+* Insert Image with IMCE * IMCE Wysiwyg Bridge
+	* Install imce, imce_wysiwyg
+	* Configure imce
+		* Edit User-1
+		* create img dir in root (where files will be uploaded to)
+		* Directores set path to <root>/img
+		* Create Full Html profile (Configuration » Content authoring » Wysiwyg profiles)
+		* In Buttons and plugins check Image and IMCE
+
 ---------------------
 
-#### Views
-##### A way to control displaying your content
-##### Can set various filters, relationships
-##### Display content based on page
+## Views
+_A way to control displaying your content_
 
-Create a block View 
-	* Install ctools(required) and views
-	* Structure -> Views -> Create a block
-	* View appears under Structure -> Blocks (View: Test View: Test)
+_Can set various filters, relationships_
+
+_Display content based on page_
+
+### Create a block View 
+* Install ctools(required) and views
+* Structure -> Views -> Add new view
+	* Add View name (Test View)
+	* add description
+	* Uncheck Create a Page
+	* Check Create a block
+* View appears under Structure -> Blocks (View: Test View: Test)
+
+* Filters
+	* (Structure -> Views -> Filter Criteria)
+	* Add Content: Type (= Article) Filter
+	* Add Content: Promoted to front page status (Yes)
+
+* Fields
+	* Configure the fields that appear for each Article in that View
+	* Reposition the View (Gear icon -> Configure Block)
+
+
+* Formats & Pagers
+	* Format as Table (enable Title to be sortable)
+	* Format as HTML unorder list
+	* Format as Grid
+	* Use a Pager 
+		* Full, mini and Num of items
+		* Use AJAX (link doesn't change). Advanced -> Use AJAX: Yes
+
+### Create a Page View 
