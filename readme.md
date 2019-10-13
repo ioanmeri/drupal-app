@@ -196,6 +196,13 @@ _Expose filters to users_
 	* you can choose the New Type format for Date format
 
 
+## Slideshow
+* install [views_slideshow](https://www.drupal.org/project/views_slideshow) and required modules, libraries
+* Add a new Block view
+* Display format -> Slideshow -> Continue & Edite
+* Add Fields -> project image
+
+
 ## Update Drupal Core
 * 7.12 -> 7.14
 * BackUp all files
@@ -213,18 +220,41 @@ _Expose filters to users_
 
 
 
-## Google Analytics
+
+
+## Useful Modules
+
+### Google Analytics
 * install [module](https://www.drupal.org/project/google_analytics)
 * configure web property id
 
-## reCAPTCHA
+### reCAPTCHA
 
-## Quick Tabs
-* instal module
+### module filter 
+_modules appear nicer! in administration_
+
+### Quick Tabs
+* install module
 * Structure -> Quicktabs
 * Add Tabs (Can use AJAX)
 * Shows up in Blocks -> choose where to show
 
+### Menu Attributes
 
+_additional attributes for menu items such as id, name, class, style.._
+
+* install [module](https://www.drupal.org/project/menu_attributes)
+* Structure -> Menus -> Main Menu -> Link (Edit)
+* Dropdown Menu Item Attributes
+	* title
+	* id
+	* classes...
+
+### Better Exposed Filters
+* install [module](https://www.drupal.org/project/better_exposed_filters)
+* Edit view
+* Advanced Tab -> Exposed Form -> Better Exposed options
+	* Autosubmit
+* Can have multiple selections
 
 
