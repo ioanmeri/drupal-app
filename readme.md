@@ -1,5 +1,5 @@
 # Drupal 7 Tutorials
-###Video series on [youtube](https://www.youtube.com/watch?v=-cUWFLBZU5I&list=PL15BE2E8313A4E809&index=2) by Scott Tolinski
+### Video series on [youtube](https://www.youtube.com/watch?v=-cUWFLBZU5I&list=PL15BE2E8313A4E809&index=2) by Scott Tolinski
 
 * Install Drupal 7 Locally
 	* touch settings.php and /files in /sites/default dir
@@ -197,29 +197,24 @@ _Expose filters to users_
 
 
 ## Slideshow
+### Views slideshow
 * install [views_slideshow](https://www.drupal.org/project/views_slideshow) and required modules, libraries
 * Add a new Block view
 * Display format -> Slideshow -> Continue & Edite
 * Add Fields -> project image
+* Configure
+	* Format -> Settings
+	* Can choose effect (Cycle specific)
 
-
-## Update Drupal Core
-* 7.12 -> 7.14
-* BackUp all files
-* Home » Administration » Configuration » Development » Maintenance mode
-	* Check Put site into maintenance mode
-* Download latest version
-* Delete everything from root folder except /sites!!
-* Paste everything from latest version except /sites
-* Browse to /update.php
-* Update DB
-* Configuration -> Clear Cache
-* Uncheck maintance mode
-* Delete files
-	(CHANGELOG.txt, INSTALL.mysql.txt, INSTALL.pgsql.txt, install.php, INSTALL.sqlite.txt, INSTALL.txt, LICENCE.txt, MAINTAINERS.txt, UPGRADE.txt)
-
-
-
+### Responsive Slideshow
+_connect to the same slideshow ^^_
+* install [flex_slider](https://www.drupal.org/project/flexslider)
+* Add [jQuery library](https://github.com/woocommerce/FlexSlider) in /sites/all/libraries
+* Edit previous Slideshow view
+* Format -> Settings -> Slides -> Slideshow Type (Flex Slider) -> Flex Slider Options
+	* Add Control
+* Flex Slider Plugin Configuration
+	* Configuration -> Media -> Flex Slider
 
 
 ## Useful Modules
@@ -258,3 +253,40 @@ _additional attributes for menu items such as id, name, class, style.._
 * Can have multiple selections
 
 
+## Update Drupal Core
+* 7.12 -> 7.14
+* BackUp all files
+* Home » Administration » Configuration » Development » Maintenance mode
+	* Check Put site into maintenance mode
+* Download latest version
+* Delete everything from root folder except /sites!!
+* Paste everything from latest version except /sites
+* Browse to /update.php
+* Update DB
+* Configuration -> Clear Cache
+* Uncheck maintance mode
+* Delete files
+	(CHANGELOG.txt, INSTALL.mysql.txt, INSTALL.pgsql.txt, install.php, INSTALL.sqlite.txt, INSTALL.txt, LICENCE.txt, MAINTAINERS.txt, UPGRADE.txt)
+
+
+## Host Drupal App
+* Clear Cache (Performance)
+* Export DB from phpMyAdmin gzip
+* Compress all files (drupalapp dir)
+* Login to Host
+* Create test subdomain
+	* Create DB
+	* Add DB user
+	* Import previous DB in newly created
+* ssh upload compressed files 
+* uncompress the files from server
+
+* Browse to test.sitename.com (DB credentials error)
+	* server/sites/default/settings.php
+	* change database information $databases
+		* database
+		* username 
+		* password
+*Reports
+	* /sites/default/files must be writable (cached public files)
+		* change permissions to 777
