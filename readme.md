@@ -133,8 +133,21 @@ _It creates a page_
 * Add Fields and Filters
 * Browse the page at /new-page
 
+### Replacement Patters
+_Customize the Output of fields in Views_
+e.g. 2 fields exists: team1 and team2
+Must output team1 vs team2
+* Add Field -> Global: Custom text
+	* Add fields to be used in replacement pattern
+		* Exclude them from display
+	* Rearrange custom text to be below them
+		* User replacement pattern [field_team1] vs [field_team2] 
 
-## Contextual Filters with Views
+
+
+
+
+### Contextual Filters with Views
 _The designer must appear in the left column of a project_
 
 * Add Designer field in Project Content Type
@@ -151,6 +164,12 @@ _The designer must appear in the left column of a project_
 	* Project Side Info: Block View -> Advanced -> Add Contextual Filter
 	* Provide Default value
 		* Contet ID from URL
+
+
+### Attach view to a View
+* Edit View -> Displays + Add -> Attachment
+* Creates a Duplicate! -> with attachment settings
+* Change fields -> For: **This attachment (override)**
 
 
 ## Taxonomy
@@ -252,6 +271,17 @@ _additional attributes for menu items such as id, name, class, style.._
 	* Autosubmit
 * Can have multiple selections
 
+### Semantic Views
+_removes unnecessary divs etc => better semantics_
+_controls semantics of a view_
+
+* install [module](https://www.drupal.org/project/semanticviews)
+* Edit a view -> Format
+	* Change to Sematic Views
+	* Show: Change to Semantic Views Fields
+
+
+
 
 ## Update Drupal Core
 * 7.12 -> 7.14
@@ -287,6 +317,34 @@ _additional attributes for menu items such as id, name, class, style.._
 		* database
 		* username 
 		* password
-*Reports
+* Reports
 	* /sites/default/files must be writable (cached public files)
 		* change permissions to 777
+
+
+
+## Feeds
+
+_parses feeds (csv, rss, xml) and creates content_
+
+* install [feeds](https://www.drupal.org/project/feeds) and required [job_scheduler](https://www.drupal.org/project/job_scheduler)
+* Structure -> Feed Importers
+	* Make feed importer (Simple CSV)
+	* Browse to /import and run feed
+
+### Create content with CSV files
+* Create Content Type: Feed
+	* Title, Body
+* Configure the Feed (Structure -> Feed Importers) to parse imported CSV file
+* Browse to /import/simple_csv and import local csv
+
+
+### Import from RSS feed
+* Create New Feed Importer (RSS)
+* Configure 
+* /import -> RSS -> paste link
+
+### Feeds Tamper
+_modify data before it gets saved_
+* install [module](https://www.drupal.org/project/feeds_tamper)
+* Structure -> Feed Importers -> Tamper (New operation)
