@@ -13,26 +13,6 @@
 		* copy /sites/all/themes/omega/starterkits/omega-html5 to /sites/all/themes
 		* rename folder, change css file names YOURTHEME to subtheme folder name
 
-* Create Content Types
-	* Basic Page
-	* Article
-	* Custom Content Type: Project
-		* Create a Project and set basic fields
-		* Add an Image from existing field
-			* Manage display: order, format, style
-
-* URL Aliases
-	* Alias 1 page link from node/3 to scott/alias 
-		* About Page -> Edit -> URL path settings
-	* Set a pattern with the module [Pathauto](https://www.drupal.org/project/pathauto)
-		* copy folder to /sites/all/modules
-		* install required modules: Token
-		* Admin Bar -> Modules (Check and Save Configuration)
-		* Admin Bar -> Configuration -> URL Aliases
-			* Set Default Path pattern: [node:title]
-			* Pattern for Projects: projects/[node:title]
-			* _Update old urls: Find Content-> Check all -> Update Options(Update URL alias)_	
-
 * Blocks
 	* rearange navbar, search and footer blocks
 	* Create a Basic Block (Text)
@@ -49,47 +29,49 @@
 	* Modules -> Update (don't update in production, backup!)
 	* /update.php to update the DB
 
-----------------------------------
 * Custom Image Styles
 	* Configuration -> Media -> Image Styles
 	* Add new effect: Scale (height: 500) and Crop 500x500
 
+* URL Aliases
+	* Alias 1 page link from node/3 to scott/alias 
+		* About Page -> Edit -> URL path settings
+	* Set a pattern with the module [Pathauto](https://www.drupal.org/project/pathauto)
+		* copy folder to /sites/all/modules
+		* install required modules: Token
+		* Admin Bar -> Modules (Check and Save Configuration)
+		* Admin Bar -> Configuration -> URL Aliases
+			* Set Default Path pattern: [node:title]
+			* Pattern for Projects: projects/[node:title]
+			* _Update old urls: Find Content-> Check all -> Update Options(Update URL alias)_	
 
-## Contact forms
 
-* Contact Form (Core Module), simple not configurable
-	* Modules -> Check Contact and Save
-	* Configure -> Add another Category (Contact)
-	* Modify Menus to include Contact (Check Enable)
 
-* Webform
-	* Install module
-	* Configure (Create custom fields)
+## Content Types
+### Create
+* Basic Page
+* Article
+* **Custom** Content Type: Project
+	* Create a Project and set basic fields
+	* Add an Image from existing field
+		* Manage display: order, format, style
 
-## Wysiwg
+### Reference other Nodes with References
 
-* Install Wysiwyg Text Editor
-	* Download [module](https://www.drupal.org/project/wysiwyg)
-	* copy in /sites/all/modules
-	* Admin Bar -> Modules -> Check Wysiwyg -> Save -> Configure -> Download CKEditor and follow instructions where to copy
-	* Refresh configuration page, Select Text Format: Filtered HTML, Editor: CKEditor
-	* Add Buttons
+_reference one content type with other content types_
 
-* Insert an Image in Wysiwyg with Insert
-	* Install Insert module
-	* Structrure -> Content Types -> Article -> Manage Fields -> Add a new Field (insert_image)
-	* Select Insert -> Enable insert Button
+_e.g One **Course** (Custom Content Type) can have a **Course Category** (Custom Content Type) and many **Course Videos** (Custom Content Type)_
 
-* Insert Image with IMCE * IMCE Wysiwyg Bridge
-	* Install imce, imce_wysiwyg
-	* Configure imce
-		* Edit User-1
-		* create img dir in root (where files will be uploaded to)
-		* Directores set path to <root>/img
-		* Create Full Html profile (Configuration » Content authoring » Wysiwyg profiles)
-		* In Buttons and plugins check Image and IMCE
+* install [references](https://www.drupal.org/project/references), Modules: Node reference, References
+* Add content type (Course)
+* Add field to Course: 
+	* Label: Topic, Field Type: **Node reference**, Widget: Check boxes/radio 
+		* Content types that can be referenced: **Course Category** (Content Type)
+	* Label: Course Videos, Field Type: **Node reference**, Widget: Auto Compete text field 
+		* Content types that can be referenced: **Course Videos** (Content Type), Number of values: Unlimited
 
----------------------
+----------------------------------
+
 
 ## Views
 _A way to control displaying your content_
@@ -135,8 +117,9 @@ _It creates a page_
 
 ### Replacement Patters
 _Customize the Output of fields in Views_
-e.g. 2 fields exists: team1 and team2
-Must output team1 vs team2
+
+_e.g. 2 fields exists: **team1** and **team2** => Must output **team1 vs team2**_
+
 * Add Field -> Global: Custom text
 	* Add fields to be used in replacement pattern
 		* Exclude them from display
@@ -148,7 +131,7 @@ Must output team1 vs team2
 
 
 ### Contextual Filters with Views
-_The designer must appear in the left column of a project_
+_The designer of a project must appear in the left column of a project_
 
 * Add Designer field in Project Content Type
 * Create a Block View: Side Info View
@@ -159,38 +142,37 @@ _The designer must appear in the left column of a project_
 * Configure block to appear only in projects/* pages
 * Now Sass mastery appears in sidebar of every Project 
 	* Not what we want!
-	* Should say the name of the developer
-* Pass Contextual filter (show it knows what content is on a display proper Designer field)
-	* Project Side Info: Block View -> Advanced -> Add Contextual Filter
+	* Should say the name of the designer
+* Pass Contextual filter (so it knows what content is on & display proper Designer field)
+	* Project Side Info: **Block View -> Advanced -> Add Contextual Filter**
 	* Provide Default value
 		* Contet ID from URL
 
 
 ### Attach view to a View
+
+_e.g. **Only the title fields** of a view must appear **again** before/after that view_
+
 * Edit View -> Displays + Add -> Attachment
 * Creates a Duplicate! -> with attachment settings
 * Change fields -> For: **This attachment (override)**
 
+### Views with relationships
 
-## Taxonomy
-_Core module_ // _Sort and categorize content_ // _metadata, tags_
+_e.g **Course** Content Type has a node reference of **Course Videos** Content type_
 
-* Structure -> Taxonomy
-* Create Taxonomy (Vocabulary) for projects (tutorial, development, design)
-* Add  -> Project Type -> Add description
-* Add Terms (now page available: /project-type/development)
-* In Project Content Type -> Add new field -> Widghet (Check boxes)
-	* Name: Project Type
-	* Field: Term reference
-	* Vocabulary: Project Type created
+_A view must have **only items in course videos**_
+
+* Create a block View: Courses
+	* Fields: Title, Poster Image
+* Advanced Tab
+	* Relationships Add -> Content: Course Videos **(Require this relationship)**
+* Fields
+	* Content: title -> Now Relationship **field course videos** appears
+	* Content: Poster Image -> Now Relationship **field course videos** appears
 
 
-* Add children to Taxonomy terms
-	* list terms
-	* Add term
-	* Relations -> Parent terms (-Drupal)
-
-## Exposed Filters
+### Exposed Filters
 
 _Expose filters to users_
 
@@ -201,7 +183,31 @@ _Expose filters to users_
 	* Use AJAX
 
 
+---------------------------------
 
+
+
+## Taxonomy
+_Core module_ // _Sort and categorize content_ // _metadata, tags_
+
+_e.g. In **Project** Content Type add the field **Project Type** that can be one of the terms in created **taxonomy**_
+
+* Structure -> Taxonomy
+* Create Taxonomy (Vocabulary) for projects (tutorial, development, design)
+* Add  -> Project Type -> Add description
+* Add Terms (now page available: /project-type/development)
+* In Project Content Type -> Add new field -> Widghet (Check boxes)
+	* Name: Project Type
+	* Field: **Term reference**
+	* Vocabulary: **Project Type**
+
+
+* Add children to Taxonomy terms
+	* list terms
+	* Add term
+	* Relations -> Parent terms (-Drupal)
+
+--------------------------
 
 ## Create Custom Date Types
 * Configuration » Regional and language » Date and time
@@ -213,6 +219,53 @@ _Expose filters to users_
 	* Name it and choose the newly created Date format
 * In the View
 	* you can choose the New Type format for Date format
+
+---------------------------
+
+## Responsive Grid with Views
+_2 items in md, 1 item in sm_
+* Views Format: Semantic Views, Semantic Views fields
+* Format Settings
+	* No Groups, No List (List type: None)
+	* Row (Element: div), class="tut-tease"
+
+
+## Contact forms
+
+* Contact Form (Core Module), simple not configurable
+	* Modules -> Check Contact and Save
+	* Configure -> Add another Category (Contact)
+	* Modify Menus to include Contact (Check Enable)
+
+* Webform
+	* Install module
+	* Configure (Create custom fields)
+
+## Wysiwg
+
+* Install Wysiwyg Text Editor
+	* Download [module](https://www.drupal.org/project/wysiwyg)
+	* copy in /sites/all/modules
+	* Admin Bar -> Modules -> Check Wysiwyg -> Save -> Configure -> Download CKEditor and follow instructions where to copy
+	* Refresh configuration page, Select Text Format: Filtered HTML, Editor: CKEditor
+	* Add Buttons
+
+* Insert an Image in Wysiwyg with Insert
+	* Install Insert module
+	* Structrure -> Content Types -> Article -> Manage Fields -> Add a new Field (insert_image)
+	* Select Insert -> Enable insert Button
+
+* Insert Image with IMCE * IMCE Wysiwyg Bridge
+	* Install imce, imce_wysiwyg
+	* Configure imce
+		* Edit User-1
+		* create img dir in root (where files will be uploaded to)
+		* Directores set path to <root>/img
+		* Create Full Html profile (Configuration » Content authoring » Wysiwyg profiles)
+		* In Buttons and plugins check Image and IMCE
+
+---------------------
+
 
 
 ## Slideshow
@@ -234,7 +287,7 @@ _connect to the same slideshow ^^_
 	* Add Control
 * Flex Slider Plugin Configuration
 	* Configuration -> Media -> Flex Slider
-
+----------------------------
 
 ## Useful Modules
 
@@ -273,6 +326,7 @@ _additional attributes for menu items such as id, name, class, style.._
 
 ### Semantic Views
 _removes unnecessary divs etc => better semantics_
+
 _controls semantics of a view_
 
 * install [module](https://www.drupal.org/project/semanticviews)
@@ -284,7 +338,8 @@ _controls semantics of a view_
 
 
 ## Update Drupal Core
-* 7.12 -> 7.14
+_e.g. 7.12 -> 7.14_
+
 * BackUp all files
 * Home » Administration » Configuration » Development » Maintenance mode
 	* Check Put site into maintenance mode
@@ -328,8 +383,8 @@ _controls semantics of a view_
 _parses feeds (csv, rss, xml) and creates content_
 
 * install [feeds](https://www.drupal.org/project/feeds) and required [job_scheduler](https://www.drupal.org/project/job_scheduler)
-* Structure -> Feed Importers
-	* Make feed importer (Simple CSV)
+* Structure -> **Feed Importers**
+	* Create feed importer (Simple CSV)
 	* Browse to /import and run feed
 
 ### Create content with CSV files
@@ -341,10 +396,11 @@ _parses feeds (csv, rss, xml) and creates content_
 
 ### Import from RSS feed
 * Create New Feed Importer (RSS)
-* Configure 
+* Configure **Structure -> Feed Importers**
 * /import -> RSS -> paste link
 
 ### Feeds Tamper
 _modify data before it gets saved_
+
 * install [module](https://www.drupal.org/project/feeds_tamper)
 * Structure -> Feed Importers -> Tamper (New operation)
